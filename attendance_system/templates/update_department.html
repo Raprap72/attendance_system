@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Update Department - Employee Attendance System{% endblock %}
+
+{% block content %}
+<h2>Update Department</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="DeptCode">Department Code:</label>
+        <input type="text" id="DeptCode" name="DeptCode" value="{{ department.DeptCode }}" readonly>
+    </div>
+    
+    <div class="form-group">
+        <label for="DeptName">Department Name:</label>
+        <input type="text" id="DeptName" name="DeptName" value="{{ department.DeptName }}" required maxlength="100">
+    </div>
+    
+    <div class="form-group">
+        <label for="DeptHead">Department Head:</label>
+        <input type="text" id="DeptHead" name="DeptHead" value="{{ department.DeptHead }}" required maxlength="100">
+    </div>
+    
+    <div class="form-group">
+        <label for="DeptTelNo">Telephone Number:</label>
+        <input type="text" id="DeptTelNo" name="DeptTelNo" value="{{ department.DeptTelNo }}" required maxlength="20">
+    </div>
+    
+    <button type="submit" class="btn btn-success">Update Department</button>
+    <a href="{{ url_for('departments') }}" class="btn btn-danger">Cancel</a>
+</form>
+{% endblock %}

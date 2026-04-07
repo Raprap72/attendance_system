@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Record Attendance - Employee Attendance System{% endblock %}
+
+{% block content %}
+<h2>Record Attendance</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="EmpID">Employee:</label>
+        <select id="EmpID" name="EmpID" required>
+            <option value="">Select Employee</option>
+            {% for emp in employees %}
+            <option value="{{ emp.EmpID }}">{{ emp.EmpID }} - {{ emp.EmpFName }} {{ emp.EmpLName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="DateTimeIn">Date/Time In:</label>
+        <input type="datetime-local" id="DateTimeIn" name="DateTimeIn" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="DateTimeOut">Date/Time Out (Optional):</label>
+        <input type="datetime-local" id="DateTimeOut" name="DateTimeOut">
+        <small>Leave blank if employee is still clocked in</small>
+    </div>
+    
+    <button type="submit" class="btn btn-success">Record Attendance</button>
+    <a href="{{ url_for('attendance') }}" class="btn btn-danger">Cancel</a>
+</form>
+{% endblock %}

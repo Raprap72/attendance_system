@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance - Employee Attendance System{% endblock %}
+
+{% block content %}
+<h2>Attendance Recording</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Record#</th>
+            <th>Emp. ID</th>
+            <th>Date/Time In</th>
+            <th>Date/Time Out</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in attendance_records %}
+        <tr>
+            <td>{{ record.RecordNo }}</td>
+            <td>{{ record.EmpID }} - {{ record.EmpFName }} {{ record.EmpLName }}</td>
+            <td>{{ record.DateTimeIn.strftime('%Y-%m-%d %H:%M:%S') if record.DateTimeIn else '' }}</td>
+            <td>{{ record.DateTimeOut.strftime('%Y-%m-%d %H:%M:%S') if record.DateTimeOut else 'Not set' }}</td>
+            <td class="actions">
+                <a href="{{ url_for('cancel_attendance', record_no=record.RecordNo) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this attendance record?')">Cancel</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if not attendance_records %}
+<p>No attendance records found. <a href="{{ url_for('record_attendance') }}">Record Attendance Here</a></p>
+{% endif %}
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('record_attendance') }}" class="btn btn-success">Record Attendance Here</a>
+</div>
+{% endblock %}

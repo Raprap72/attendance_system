@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Add Employee - Employee Attendance System{% endblock %}
+
+{% block content %}
+<h2>Add Employee</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="EmpID">Employee ID:</label>
+        <input type="number" id="EmpID" name="EmpID" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="DeptCode">Department:</label>
+        <select id="DeptCode" name="DeptCode" required>
+            <option value="">Select Department</option>
+            {% for dept in departments %}
+            <option value="{{ dept.DeptCode }}">{{ dept.DeptName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="EmpLName">Lastname:</label>
+        <input type="text" id="EmpLName" name="EmpLName" required maxlength="50">
+    </div>
+    
+    <div class="form-group">
+        <label for="EmpFName">Firstname:</label>
+        <input type="text" id="EmpFName" name="EmpFName" required maxlength="50">
+    </div>
+    
+    <div class="form-group">
+        <label for="EmpRatePerHour">Rate Per Hour (PHP):</label>
+        <input type="number" id="EmpRatePerHour" name="EmpRatePerHour" step="0.01" min="0" required>
+    </div>
+    
+    <button type="submit" class="btn btn-success">Add Employee</button>
+    <a href="{{ url_for('employees') }}" class="btn btn-danger">Cancel</a>
+</form>
+{% endblock %}

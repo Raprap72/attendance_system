@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Departments - Employee Attendance System{% endblock %}
+
+{% block content %}
+<h2>Departments Management</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Head</th>
+            <th>Tel. No.</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dept in departments %}
+        <tr>
+            <td>{{ dept.DeptCode }}</td>
+            <td>{{ dept.DeptName }}</td>
+            <td>{{ dept.DeptHead }}</td>
+            <td>{{ dept.DeptTelNo }}</td>
+            <td class="actions">
+                <a href="{{ url_for('update_department', dept_code=dept.DeptCode) }}" class="btn">Edit</a>
+                <a href="{{ url_for('delete_department', dept_code=dept.DeptCode) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this department?')">Del</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if not departments %}
+<p>No departments found. <a href="{{ url_for('add_department') }}">Add a Department Here</a></p>
+{% endif %}
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('add_department') }}" class="btn btn-success">Add a Department Here</a>
+</div>
+{% endblock %}

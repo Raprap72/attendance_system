@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Employees - Employee Attendance System{% endblock %}
+
+{% block content %}
+<h2>Employees Management</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Dept</th>
+            <th>Lastname</th>
+            <th>Firstname</th>
+            <th>Rate/Hour</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emp in employees %}
+        <tr>
+            <td>{{ emp.EmpID }}</td>
+            <td>{{ emp.DeptName }}</td>
+            <td>{{ emp.EmpLName }}</td>
+            <td>{{ emp.EmpFName }}</td>
+            <td>PHP {{ "%.2f"|format(emp.EmpRatePerHour) }}</td>
+            <td class="actions">
+                <a href="{{ url_for('update_employee', emp_id=emp.EmpID) }}" class="btn">Edit</a>
+                <a href="{{ url_for('delete_employee', emp_id=emp.EmpID) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this employee?')">Del</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if not employees %}
+<p>No employees found. <a href="{{ url_for('add_employee') }}">Add an Employee Here</a></p>
+{% endif %}
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('add_employee') }}" class="btn btn-success">Add an Employee Here</a>
+</div>
+{% endblock %}

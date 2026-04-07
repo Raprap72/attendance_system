@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Employee Attendance System{% endblock %}
+
+{% block content %}
+<h2>Main Menu</h2>
+<p>Welcome to the Employee Attendance Recording System. Please select a module from the navigation menu above or click on the options below:</p>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+    <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+        <h3>Departments Management</h3>
+        <p>Add, edit, delete, and view department information</p>
+        <a href="{{ url_for('departments') }}" class="btn btn-primary">Go to Departments</a>
+    </div>
+    
+    <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+        <h3>Employees Management</h3>
+        <p>Add, edit, delete, and view employee information</p>
+        <a href="{{ url_for('employees') }}" class="btn btn-primary">Go to Employees</a>
+    </div>
+    
+    <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+        <h3>Attendance Recording</h3>
+        <p>Record employee attendance and manage time-in/out records</p>
+        <a href="{{ url_for('attendance') }}" class="btn btn-primary">Go to Attendance</a>
+    </div>
+    
+    <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+        <h3>Monitoring (By Employee)</h3>
+        <p>View attendance records and calculate salary for specific employees</p>
+        <a href="{{ url_for('monitoring_employee') }}" class="btn btn-primary">Monitor Employee</a>
+    </div>
+    
+    <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+        <h3>Monitoring (Date Range)</h3>
+        <p>View attendance records within a specific date range</p>
+        <a href="{{ url_for('monitoring_date_range') }}" class="btn btn-primary">Monitor by Date</a>
+    </div>
+</div>
+
+<div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
+    <h3>System Features:</h3>
+    <ul>
+        <li>Department management with head and contact information</li>
+        <li>Employee management with department assignment and hourly rates</li>
+        <li>Attendance recording with date/time in and out tracking</li>
+        <li>Employee-specific attendance monitoring with salary calculation</li>
+        <li>Date range attendance reporting</li>
+        <li>Automatic total hours calculation</li>
+    </ul>
+</div>
+{% endblock %}
